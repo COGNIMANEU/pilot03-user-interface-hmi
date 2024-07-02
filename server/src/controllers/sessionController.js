@@ -1,17 +1,16 @@
-const ManufacturingSession = require('../models/sessionModel');
-const {logicUpdateStageStatus, logicAdvanceStage} = require('./businessLogic')
+const Session = require('../models/sessionModel');
 // Get all sessions
 const getSessions = async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
   console.log(`Received request to get sessions - Page: ${page}, Limit: ${limit}`);
   try {
-    const sessions = await ManufacturingSession.find()
+    const sessions = await Session.find()
       .sort({ created_at: -1 }) // Sort by created_at in descending order
       .limit(limit * 1)
       .skip((page - 1) * limit)
       .exec();
 
-    const count = await ManufacturingSession.countDocuments();
+    const count = await Session.countDocuments();
 
     res.status(200).json({
       sessions,
@@ -27,7 +26,7 @@ const getSessions = async (req, res) => {
 // Get a session by ID
 const getSessionById = async (req, res) => {
   try {
-    const session = await ManufacturingSession.findById(req.params.id);
+    const session = await Session.findById(req.params.id);
     if (session) {
       res.json(session);
     } else {
@@ -42,7 +41,7 @@ const getSessionById = async (req, res) => {
 const createSession = async (req, res) => {
   try {
     const { name, description, workstation_id, client_id, stage, status, created_by } = req.body;
-    const newSession = new ManufacturingSession({
+    const newSession = new Session({
       name,
       description,
       workstation_id: workstation_id ? workstation_id:'default_workstation',
@@ -59,7 +58,7 @@ const createSession = async (req, res) => {
 // Update a session
 const updateSession = async (req, res) => {
   try {
-    const session = await ManufacturingSession.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const session = await Session.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (session) {
       res.json(session);
     } else {
@@ -73,7 +72,7 @@ const updateSession = async (req, res) => {
 // Delete a session
 const deleteSession = async (req, res) => {
   try {
-    const session = await ManufacturingSession.findByIdAndDelete(req.params.id);
+    const session = await Session.findByIdAndDelete(req.params.id);
     if (session) {
       res.json({ message: 'Session deleted successfully' });
     } else {
@@ -87,7 +86,7 @@ const deleteSession = async (req, res) => {
 const updateStageStatus = async (req, res) => {
   try {
     const { stageIndex, newStatus } = req.body;
-    const session = await ManufacturingSession.findById(req.params.id);
+    const session = await Session.findById(req.params.id);
     if (!session) throw new Error('Session not found');
     session.updateStageStatus(stageIndex, newStatus);
     await session.save();
@@ -99,7 +98,7 @@ const updateStageStatus = async (req, res) => {
 
 const advanceStage = async (req, res) => {
   try {
-    const session = await ManufacturingSession.findById(req.params.id);
+    const session = await Session.findById(req.params.id);
     if (!session) throw new Error('Session not found');
     session.advanceStage();
     await session.save();

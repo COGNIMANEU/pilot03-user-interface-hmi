@@ -6,13 +6,18 @@ const StageSchema = new Schema({
   status: { type: Number, required: true, enum: [0, 1, 2, 3] }, // 0: Not started, 1: In progress, 2: Completed, 3: Halted
 });
 
-const ManufacturingSessionSchema = new Schema({
+const SessionSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String },
   workstation_id: { type: String, required: true },
   client_id: { type: String, required: true },
   status: { type: Number, required: true, enum: [0, 1, 2, 3] }, // 0: Not started, 1: In progress, 2: Terminated, 3: Halted
-  stages: { type: [StageSchema], default: [] },
+  stages: { type: [StageSchema], default: [
+    { stage: 0, status: 0 },
+    { stage: 1, status: 0 },
+    { stage: 2, status: 0 },
+    { stage: 3, status: 0 }
+  ]},
   created_at: { type: Date, default: Date.now },
   started_at: { type: Date },
   terminated_at: { type: Date },
@@ -23,14 +28,15 @@ const ManufacturingSessionSchema = new Schema({
   has_stl_files: { type: Boolean, default: false },
 });
 
-ManufacturingSessionSchema.methods.updateGlobalStatus = function() {
+// Method to update the global status of the session
+SessionSchema.methods.updateGlobalStatus = function() {
   if (this.stages.length === 0) {
     this.status = 0;
   } else {
     const currentStage = this.stages[this.stages.length - 1];
     if (currentStage.stage === 0 && currentStage.status === 0) {
       this.status = 0;
-    } else if (currentStage.stage === 7 && currentStage.status === 2) {
+    } else if (currentStage.stage === 3 && currentStage.status === 2) {
       this.status = 2;
     } else if (currentStage.status === 3) {
       this.status = 3;
@@ -41,7 +47,8 @@ ManufacturingSessionSchema.methods.updateGlobalStatus = function() {
   this.last_updated = Date.now();
 };
 
-ManufacturingSessionSchema.methods.updateStageStatus = function(stageIndex, newStatus) {
+// Method to update the status of a specific stage and adjust other stages accordingly
+SessionSchema.methods.updateStageStatus = function(stageIndex, newStatus) {
   if (this.stages[stageIndex]) {
     this.stages[stageIndex].status = newStatus;
 
@@ -61,10 +68,11 @@ ManufacturingSessionSchema.methods.updateStageStatus = function(stageIndex, newS
   }
 };
 
-ManufacturingSessionSchema.methods.advanceStage = function() {
+// Method to advance to the next stage
+SessionSchema.methods.advanceStage = function() {
   const currentStageIndex = this.stages.length - 1;
   const currentStage = this.stages[currentStageIndex];
-  if (currentStage.stage < 7) {
+  if (currentStage.stage < 3) {
     // Set the current stage status to 2 (Completed)
     this.stages[currentStageIndex].status = 2;
     // Add the next stage with status 0 (Not started)
@@ -76,4 +84,4 @@ ManufacturingSessionSchema.methods.advanceStage = function() {
   this.updateGlobalStatus();
 };
 
-module.exports = mongoose.model('ManufacturingSession', ManufacturingSessionSchema);
+module.exports = mongoose.model('Session', SessionSchema);
