@@ -71,25 +71,6 @@ const SessionDetailPage = () => {
 
   const currentStage = getCurrentSessionStage(session);
 
-  const panelHeader = (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      <span>{session.name}</span>
-      <div>
-        <Button
-          type="secondary"
-          onClick={() => navigate(`/edit-session/${session._id}`)}
-          icon={<EditOutlined />}
-          style={{ marginRight: '10px' }}
-        >
-          Edit Session
-        </Button>
-        <Button danger onClick={handleDelete} icon={<DeleteOutlined />}>
-          Delete Session
-        </Button>
-      </div>
-    </div>
-  );
-
   return (
     <div className="session-detail-container">
       <Card
@@ -136,7 +117,7 @@ const SessionDetailPage = () => {
         </Steps>
       </Card>
       <Collapse defaultActiveKey={['1']} style={{marginTop: '10px'}}>
-      <Panel header={panelHeader} key="1" >
+      <Panel header={session.name} key="1" >
         <Descriptions bordered column={1}>
           <Descriptions.Item label="ID">{session._id}</Descriptions.Item>
           <Descriptions.Item label="Description">{session.description}</Descriptions.Item>
@@ -163,6 +144,19 @@ const SessionDetailPage = () => {
           <Descriptions.Item label="Created by">{session.created_by}</Descriptions.Item>
           <Descriptions.Item label="Operator">{session.operator}</Descriptions.Item>
         </Descriptions>
+        <div>
+          <Button
+            type="secondary"
+            onClick={() => navigate(`/edit-session/${session._id}`)}
+            icon={<EditOutlined />}
+            style={{ marginRight: '10px' }}
+          >
+            Edit Session
+          </Button>
+          <Button danger onClick={handleDelete} icon={<DeleteOutlined />}>
+            Delete Session
+          </Button>
+        </div>
       </Panel>
     </Collapse>
     </div>

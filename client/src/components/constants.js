@@ -12,6 +12,13 @@ export const STATUS_COLORS = [
   'red'
 ];
 
+export const STAGE_SERVICE_URLS = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://localhost:3002',
+  'http://localhost:3003'
+];
+
 export const STAGE_NAMES = [
   '3D printing',
   'Parts removal',
