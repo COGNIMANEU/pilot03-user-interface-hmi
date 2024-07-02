@@ -1,45 +1,12 @@
 import { Tag , Menu} from 'antd';
-import { EditOutlined, PrinterOutlined, RobotOutlined, BgColorsOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { STAGE_NAMES, STAGE_COLORS, STAGE_ICONS, STATUS_NAMES, STATUS_COLORS } from './constants';
+import { ProductOutlined, PrinterOutlined, DeleteColumnOutlined, StarOutlined } from '@ant-design/icons';
 
-export const getStatusTag = (status) => {
-  switch (status) {
-    case 0:
-      return <Tag color="gray">Not started</Tag>;
-    case 1:
-      return <Tag color="blue">In progress</Tag>;
-    case 2:
-      return <Tag color="red">Terminated</Tag>;
-    case 3:
-      return <Tag color="green">Completed</Tag>;
-    default:
-      return <Tag color="default">Unknown</Tag>;
-  }
-};
+export const getStatusTag = (status) => (<Tag color={STATUS_COLORS[status]}>{STATUS_NAMES[status]}</Tag>);
 
-export const getStageTag = (stage) => {
-  const stageNames = [
-    'Just created',
-    '3D printing',
-    'Parts removal',
-    'Ultrasonic cleaning',
-    'Support removal',
-    'Ultrasonic cleaning',
-    'Surface polishing',
-    'Completed'
-  ];
-
-  const stageColors = [
-    'lightgray', // Just created
-    'blue',      // 3D printing
-    'cyan',      // Parts removal
-    'green',     // Ultrasonic cleaning
-    'yellow',    // Support removal
-    'orange',    // Ultrasonic cleaning
-    'red',       // Surface polishing
-    'gold'       // Completed
-  ];
-  return <Tag color={stageColors[stage]}>{stageNames[stage]}</Tag>;
-};
+export const getStageTag = (stage) => (
+  <Tag color={STAGE_COLORS[stage]}>{STAGE_NAMES[stage]}</Tag>
+);
 
 
 export const getCurrentSessionStage = (session) => {
@@ -71,25 +38,13 @@ export const getCurrentSessionStage = (session) => {
   return null; // In case there is no matching stage
 }
 
-export const getStageIcon = (stage) => {
-  switch(stage) {
-    case 0:
-      return <EditOutlined style={{ fontSize: '24px' }} />;
-    case 1:
-      return <PrinterOutlined style={{ fontSize: '24px' }} />;
-    case 2:
-    case 4:
-    case 6:
-      return <RobotOutlined style={{ fontSize: '24px' }} />;
-    case 3:
-    case 5:
-      return <BgColorsOutlined style={{ fontSize: '24px' }} />;
-    case 7:
-      return <CheckCircleOutlined style={{ fontSize: '24px' }} />;
-    default:
-      return null;
-  }
+const iconComponents = {
+  PrinterOutlined: <PrinterOutlined style={{ fontSize: '24px' }} />,
+  ProductOutlined: <ProductOutlined style={{ fontSize: '24px' }} />,
+  DeleteColumnOutlined: <DeleteColumnOutlined style={{ fontSize: '24px' }} />,
+  StarOutlined: <StarOutlined style={{ fontSize: '24px' }} />
 };
+export const getStageIcon = (stage) => iconComponents[STAGE_ICONS[stage]];
 
 export const getStageStatusMenu = (index, handleUpdateStageStatus) => (
   <Menu>
