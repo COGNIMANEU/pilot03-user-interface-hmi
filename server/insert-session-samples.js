@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const fs = require("fs");
-const ManufacturingSession = require("./src/models/sessionModel");
+const Session = require("./src/models/sessionModel");
 
 mongoose.connect("mongodb://localhost:27017/croom-hmi00");
 
@@ -16,10 +16,6 @@ const sessions = [
       { stage: 1, status: 1 },
       { stage: 2, status: 0 },
       { stage: 3, status: 0 },
-      { stage: 4, status: 0 },
-      { stage: 5, status: 0 },
-      { stage: 6, status: 0 },
-      { stage: 7, status: 0 },
     ],
     created_at: new Date(),
     created_by: "creator_1",
@@ -38,10 +34,6 @@ const sessions = [
       { stage: 1, status: 0 },
       { stage: 2, status: 0 },
       { stage: 3, status: 0 },
-      { stage: 4, status: 0 },
-      { stage: 5, status: 0 },
-      { stage: 6, status: 0 },
-      { stage: 7, status: 0 },
     ],
     created_at: new Date(),
     created_by: "creator_2",
@@ -60,10 +52,6 @@ const sessions = [
       { stage: 1, status: 2 },
       { stage: 2, status: 2 },
       { stage: 3, status: 2 },
-      { stage: 4, status: 2 },
-      { stage: 5, status: 2 },
-      { stage: 6, status: 2 },
-      { stage: 7, status: 2 },
     ],
     created_at: new Date(),
     created_by: "creator_3",
@@ -80,12 +68,8 @@ const sessions = [
     stages: [
       { stage: 0, status: 2 },
       { stage: 1, status: 1 },
-      { stage: 2, status: 1 },
+      { stage: 2, status: 0 },
       { stage: 3, status: 0 },
-      { stage: 4, status: 0 },
-      { stage: 5, status: 0 },
-      { stage: 6, status: 0 },
-      { stage: 7, status: 0 },
     ],
     created_at: new Date(),
     created_by: "creator_4",
@@ -104,10 +88,6 @@ const sessions = [
       { stage: 1, status: 1 },
       { stage: 2, status: 0 },
       { stage: 3, status: 0 },
-      { stage: 4, status: 0 },
-      { stage: 5, status: 0 },
-      { stage: 6, status: 0 },
-      { stage: 7, status: 0 },
     ],
     created_at: new Date(),
     created_by: "creator_5",
@@ -118,8 +98,8 @@ const sessions = [
 ];
 
 async function seedDatabase() {
-  await ManufacturingSession.deleteMany({}); // Clear existing data
-  await ManufacturingSession.insertMany(sessions); // Insert new data
+  await Session.deleteMany({}); // Clear existing data
+  await Session.insertMany(sessions); // Insert new data
   console.log("Database seeded successfully");
   mongoose.connection.close();
 }
