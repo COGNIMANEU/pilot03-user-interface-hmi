@@ -1,0 +1,14 @@
+.new-session-form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+.new-session-form h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.new-session-form p {
+  margin-bottom: 24px;
+}

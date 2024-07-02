@@ -1,0 +1,39 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000; /* Ensure the navbar is above other content */
+}
+
+.navbar-logo img {
+  height: 50px;
+}
+
+.navbar-links {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.navbar-links button {
+  margin: 0 10px;
+}
+
+.navbar-notification {
+  margin-right: 20px;
+}
+
+.navbar-user {
+  margin-right: 10px;
+}
+
+.navbar-user button {
+  display: flex;
+  align-items: center;
+}

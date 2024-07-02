@@ -1,0 +1,292 @@
+[
+  {
+      "printing_session_id": "session_1",
+      "title": "Layer Shift Detected",
+      "description": "A layer shift has been detected in the print.",
+      "type": 1,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T10:20:42.123Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_2",
+      "title": "Print Head Temperature High",
+      "description": "The print head temperature is higher than normal.",
+      "type": 2,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T10:18:35.456Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_3",
+      "title": "Filament Jam",
+      "description": "A filament jam has occurred.",
+      "type": 2,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T10:17:30.789Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_4",
+      "title": "Material Low",
+      "description": "Material is running low. Please refill.",
+      "type": 1,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T10:15:10.321Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_5",
+      "title": "Print Head Cooling Fan Fault",
+      "description": "The cooling fan on the print head is not working.",
+      "type": 2,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T10:12:20.654Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_1",
+      "title": "Power Interruption",
+      "description": "A power interruption has been detected.",
+      "type": 1,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T10:10:05.987Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_2",
+      "title": "Extruder Motor Fault",
+      "description": "The extruder motor is not functioning properly.",
+      "type": 2,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T10:08:45.123Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_3",
+      "title": "Print Completed",
+      "description": "The print job has completed successfully.",
+      "type": 0,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T10:06:55.456Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_4",
+      "title": "Over-extrusion Detected",
+      "description": "Over-extrusion has been detected in the print.",
+      "type": 1,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T10:05:35.789Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_5",
+      "title": "Under-extrusion Detected",
+      "description": "Under-extrusion has been detected in the print.",
+      "type": 2,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T10:03:25.321Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_1",
+      "title": "Print Head Calibration Required",
+      "description": "The print head needs calibration.",
+      "type": 1,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T10:01:35.654Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_2",
+      "title": "Nozzle Blocked",
+      "description": "The nozzle is blocked.",
+      "type": 2,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T10:00:45.987Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_3",
+      "title": "Print Job Paused",
+      "description": "The print job has been paused.",
+      "type": 1,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:58:50.123Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_4",
+      "title": "Print Job Resumed",
+      "description": "The print job has been resumed.",
+      "type": 0,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:57:30.456Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_5",
+      "title": "Print Bed Leveling Required",
+      "description": "The print bed needs leveling.",
+      "type": 1,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:55:15.789Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_1",
+      "title": "Temperature Sensor Fault",
+      "description": "The temperature sensor is not working correctly.",
+      "type": 2,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:53:40.321Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_2",
+      "title": "Firmware Update Available",
+      "description": "A firmware update is available for the printer.",
+      "type": 0,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:52:25.654Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_3",
+      "title": "Maintenance Required",
+      "description": "Scheduled maintenance is required.",
+      "type": 1,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:50:35.987Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_4",
+      "title": "Humidity Level High",
+      "description": "The humidity level in the printer environment is high.",
+      "type": 2,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:48:50.123Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_5",
+      "title": "Ambient Temperature High",
+      "description": "The ambient temperature around the printer is high.",
+      "type": 1,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:47:30.456Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_1",
+      "title": "Ambient Temperature Low",
+      "description": "The ambient temperature around the printer is low.",
+      "type": 2,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:45:25.789Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_2",
+      "title": "Build Plate Adhesion Issue",
+      "description": "There is an issue with the build plate adhesion.",
+      "type": 1,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:43:40.321Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_3",
+      "title": "Filament End Detected",
+      "description": "The end of the filament has been detected.",
+      "type": 0,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:42:25.654Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_4",
+      "title": "Support Material Issue",
+      "description": "There is an issue with the support material.",
+      "type": 2,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:40:35.987Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_5",
+      "title": "Print Job Canceled",
+      "description": "The print job has been canceled.",
+      "type": 1,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:38:50.123Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_1",
+      "title": "Power Recovery Activated",
+      "description": "Power recovery mode has been activated.",
+      "type": 0,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:37:30.456Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_2",
+      "title": "G-code Error",
+      "description": "An error in the G-code has been detected.",
+      "type": 2,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:35:25.789Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_3",
+      "title": "Overheating Detected",
+      "description": "Overheating has been detected.",
+      "type": 1,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:33:40.321Z",
+      "resolved_at": null
+  },
+  {
+      "printing_session_id": "session_4",
+      "title": "Z-axis Stuck",
+      "description": "The Z-axis is stuck.",
+      "type": 2,
+      "status": 0,
+      "action": [],
+      "created_at": "2024-06-27T09:32:25.654Z",
+      "resolved_at": null
+  }
+]

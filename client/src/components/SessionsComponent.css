@@ -1,0 +1,14 @@
+.session-overview-container {
+  padding: 20px;
+}
+
+.session-overview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.session-overview-search {
+  margin-bottom: 20px;
+}

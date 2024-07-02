@@ -1,0 +1,108 @@
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginSuccess } from './redux/actions/authActions';
+import DashboardPage from './components/DashboardPage.jsx';
+import LoginComponent from './components/LoginComponent.jsx';
+import CreateUserComponent from './components/CreateUserComponent.jsx';
+import UpdatePasswordComponent from './components/UpdatePasswordComponent.jsx';
+import PrivateRoute from './components/PrivateRoute';
+import AdminRoute from './components/AdminRoute';
+import Navbar from './components/Navbar.jsx';
+import {jwtDecode} from 'jwt-decode';
+import AlertComponent from './components/AlertComponent.jsx';
+import BreadcrumbNav from './components/BreadcrumbNav.jsx';
+import NewSessionForm from './components/NewSessionForm.jsx';
+import SessionDetailPage from './components/SessionDetailPage.jsx';
+import EditSessionPage from './components/EditSessionPage.jsx';
+
+const App = () => {
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    if (token) {
+      try {
+        // Decode token to get user info and set in redux
+        const user = jwtDecode(token);
+        dispatch(loginSuccess(user, token, true));
+      } catch (error) {
+        console.error('Invalid token', error);
+      }
+    }
+  }, [dispatch]);
+
+  return (
+    <Router>
+      <div>
+        {isAuthenticated && <Navbar />}
+        <div style={{ paddingTop: '60px' }}> {/* Adjust this value based on the height of your navbar */}
+        {isAuthenticated && <BreadcrumbNav />}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <DashboardPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/login" element={isAuthenticated ? <Navigate to="/" /> : <LoginComponent />} />
+          <Route
+            path="/create-user"
+            element={
+              <AdminRoute>
+                <CreateUserComponent />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/update-password"
+            element={
+              <PrivateRoute>
+                <UpdatePasswordComponent />
+              </PrivateRoute>
+            }
+          />
+          <Route
+              path="/create-session"
+              element={
+                <PrivateRoute>
+                  <NewSessionForm />
+                </PrivateRoute>
+              }
+            />
+            <Route
+            path="/sessions/:id"
+            element={
+              <PrivateRoute>
+                <SessionDetailPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/edit-session/:id" element={<PrivateRoute><EditSessionPage /></PrivateRoute>} />
+          <Route
+            path="/alerts"
+            element={
+              <PrivateRoute>
+                <AlertComponent />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/account-settings"
+            element={
+              <PrivateRoute>
+                <UpdatePasswordComponent />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </div>
+      </div>
+    </Router>
+  );
+};
+
+export default App;

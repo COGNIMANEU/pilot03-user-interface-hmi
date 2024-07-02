@@ -1,0 +1,15 @@
+.session-detail-container {
+  padding: 20px;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.stage-buttons {
+  margin-top: 20px;
+  text-align: center;
+}
