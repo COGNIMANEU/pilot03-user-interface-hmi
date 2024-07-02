@@ -20,7 +20,7 @@ import {
   UPDATE_STAGE_STATUS_SUCCESS,
   UPDATE_STAGE_STATUS_FAILURE,
 } from '../actions/sessionActions';
-
+import { notification } from 'antd';
 function* fetchSessions(action) {
   try {
     const response = yield call(axios.get, `/api/sessions?page=${action.payload.page}&limit=${action.payload.limit}`);
@@ -43,8 +43,16 @@ function* updateSession(action) {
   try {
     const response = yield call(axios.put, `/api/sessions/${action.payload.id}`, action.payload.values);
     yield put({ type: UPDATE_SESSION_SUCCESS, payload: response.data });
+    notification.success({
+      message: 'Update Successful',
+      description: 'The session has been updated successfully.',
+    });
   } catch (error) {
     yield put({ type: UPDATE_SESSION_FAILURE, payload: error.message });
+    notification.error({
+      message: 'Update Failed',
+      description: 'Failed to update the session. Please try again.',
+    });
   }
 }
 
@@ -75,9 +83,17 @@ function* updateStageStatus(action) {
       newStatus: action.payload.newStatus,
     });
     yield put({ type: UPDATE_STAGE_STATUS_SUCCESS, payload: response.data });
+    notification.success({
+      message: 'Stage Status Updated',
+      description: 'The stage status has been updated successfully.',
+    });
     yield put({ type: FETCH_SESSION_BY_ID_REQUEST, payload: action.payload.id });
   } catch (error) {
     yield put({ type: UPDATE_STAGE_STATUS_FAILURE, payload: error.message });
+    notification.error({
+      message: 'Update Failed',
+      description: 'Failed to update the stage status. Please try again.',
+    });
   }
 }
 
