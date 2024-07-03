@@ -18,9 +18,11 @@ const alertTypeColors = {
 
 const AlertComponent = () => {
   const dispatch = useDispatch();
+  const sessions = useSelector(state => state.sessions.sessions);
   const { alerts, loading, error, totalPages, currentPage, unresolvedCount } = useSelector(state => state.alerts);
 
   const [filterType, setFilterType] = useState(null);
+  const [filterSession, setFilterSession] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -40,6 +42,10 @@ const AlertComponent = () => {
     setFilterType(value);
   };
 
+  const handleFilterSessionChange = value => {
+    setFilterSession(value);
+  };
+
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -49,10 +55,10 @@ const AlertComponent = () => {
   };
 
   const filteredAlerts = alerts.filter(alert => {
-    if (filterType !== null && alert.type !== filterType) {
-      return false;
-    }
-    return alert.status === 0; // Only show unresolved alerts
+    const matchesType = filterType === null || filterType === 3 || alert.type === filterType;
+    const matchesSession = filterSession === null || alert.session_id === filterSession;
+
+    return matchesType && matchesSession && alert.status === 0; // Only show unresolved alerts
   });
 
   return (
@@ -75,6 +81,14 @@ const AlertComponent = () => {
             <Option value={1}>Warning</Option>
             <Option value={2}>Critical</Option>
           </Select>
+          <Select placeholder="Filter by Session" onChange={handleFilterSessionChange} style={{ width: 200 }}>
+          <Option value={null}>All Sessions</Option>
+          {sessions.map(session => (
+            <Option key={session._id} value={session._id}>
+              {session.name}
+            </Option>
+          ))}
+        </Select>
         </Space>
         <List
           itemLayout="horizontal"
