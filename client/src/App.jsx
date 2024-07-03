@@ -8,13 +8,13 @@ import CreateUserComponent from './components/CreateUserComponent.jsx';
 import UpdatePasswordComponent from './components/UpdatePasswordComponent.jsx';
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
-import Navbar from './components/Navbar.jsx';
 import {jwtDecode} from 'jwt-decode';
 import AlertComponent from './components/AlertComponent.jsx';
 import BreadcrumbNav from './components/BreadcrumbNav.jsx';
 import NewSessionForm from './components/NewSessionForm.jsx';
 import SessionDetailPage from './components/SessionDetailPage.jsx';
 import EditSessionPage from './components/EditSessionPage.jsx';
+import MainLayout from './components/MainLayout.jsx';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,9 +35,7 @@ const App = () => {
 
   return (
     <Router>
-      <div>
-        {isAuthenticated && <Navbar />}
-        <div style={{ paddingTop: '60px' }}> {/* Adjust this value based on the height of your navbar */}
+      <MainLayout isAuthenticated={isAuthenticated}>
         {isAuthenticated && <BreadcrumbNav />}
         <Routes>
           <Route
@@ -99,8 +97,7 @@ const App = () => {
             }
           />
         </Routes>
-      </div>
-      </div>
+      </MainLayout>
     </Router>
   );
 };
