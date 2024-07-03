@@ -23,7 +23,7 @@ const NewSessionForm = () => {
   };
 
   return (
-    <div className="new-manufacturing-session-form">
+    <div className="new-session-form">
       <h2>New Printing Session</h2>
       <p>Create a new printing session</p>
       <Form
