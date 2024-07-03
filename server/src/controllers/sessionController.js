@@ -1,8 +1,9 @@
 const Session = require('../models/sessionModel');
+const logger = require('../utils/logger');
 // Get all sessions
 const getSessions = async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
-  console.log(`Received request to get sessions - Page: ${page}, Limit: ${limit}`);
+  logger.info(`Received request to get sessions - Page: ${page}, Limit: ${limit}`);
   try {
     const sessions = await Session.find()
       .sort({ created_at: -1 }) // Sort by created_at in descending order

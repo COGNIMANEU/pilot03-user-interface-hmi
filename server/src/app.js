@@ -7,7 +7,7 @@ const sessionRoutes = require('./routes/sessionRoutes');
 const userRoutes = require('./routes/userRoutes')
 const {authenticateToken} = require('./middlewares/authMiddleware')
 require('dotenv').config();
-
+const logger = require('./utils/logger');
 const app = express();
 
 // Setup request logging
@@ -23,6 +23,20 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
+
+
+// Error handling
+app.use((err, req, res, next) => {
+  logger.error(`Error occurred: ${err.message}`);
+  res.status(500).send('Internal Server Error');
+});
+
+// Log all requests
+app.use((req, res, next) => {
+  logger.info(`${req.method} ${req.url}`);
+  next();
+});
+
 
 app.use('/api/alerts', authenticateToken, alertRoutes);
 app.use('/api/sessions', authenticateToken, sessionRoutes);

@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const { Alert } = require('../models/alertModel');
+const logger = require('../utils/logger');
 
 // Get alerts with pagination
 // Get unresolved alerts with pagination
 const getAlerts = async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
-  console.log(`Received request to get alerts - Page: ${page}, Limit: ${limit}`);
+  logger.info(`Received request to get alerts - Page: ${page}, Limit: ${limit}`);
 
   try {
     const alerts = await Alert.find({ status: 0 })
@@ -28,23 +29,23 @@ const getAlerts = async (req, res) => {
 };
 // Update the status of an alert
 const updateAlertStatus = async (req, res) => {
-  const { alert_id } = req.params;
+  const { id } = req.params;
   const { status } = req.body;
-  console.log(`Received request to update alert status - Alert ID: ${alert_id}, Status: ${status}`);
-
+  logger.info(`Received request to update alert status - Alert ID: ${id}, Status: ${status}`);
+  // logger.info(JSON.stringify(req.params));
   try {
-    const alert = await Alert.findById(alert_id);
+    const alert = await Alert.findById(id);
     if (!alert) {
       return res.status(404).json({ error: 'Alert not found' });
     }
-    console.log('Found the alert')
+    logger.info('Found the alert')
     alert.status = status;
     if (status === 1) {
       alert.resolved_at = new Date();
     }
     await alert.save();
 
-    res.status(200).json({ alert_id: alert_id, status: status, resolved_at: alert.resolved_at });
+    res.status(200).json({ alert_id: id, status: status, resolved_at: alert.resolved_at });
   } catch (error) {
     console.error(`Error while updating alert status: ${error.message}`);
     res.status(500).json({ error: 'Internal server error' });
