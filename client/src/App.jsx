@@ -10,7 +10,6 @@ import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
 import {jwtDecode} from 'jwt-decode';
 import AlertComponent from './components/AlertComponent.jsx';
-import BreadcrumbNav from './components/BreadcrumbNav.jsx';
 import NewSessionForm from './components/NewSessionForm.jsx';
 import SessionDetailPage from './components/SessionDetailPage.jsx';
 import EditSessionPage from './components/EditSessionPage.jsx';
@@ -36,7 +35,6 @@ const App = () => {
   return (
     <Router>
       <MainLayout isAuthenticated={isAuthenticated}>
-        {isAuthenticated && <BreadcrumbNav />}
         <Routes>
           <Route
             path="/"

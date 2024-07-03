@@ -1,39 +1,71 @@
+/* Navbar Styles */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #ffffff;
+  justify-content: space-between;
   padding: 0 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  z-index: 1000; /* Ensure the navbar is above other content */
+  background-color: white;
+  color: black;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-logo img {
-  height: 50px;
+  height: 40px;
 }
 
-.navbar-links {
-  flex-grow: 1;
-  text-align: right;
+.full-logo {
+  display: block;
 }
 
-.navbar-links button {
-  margin: 0 10px;
+.collapsed-logo {
+  display: none;
 }
 
-.navbar-notification {
+.navbar-links,
+.menu-button {
+  display: flex;
+  align-items: center;
+}
+
+.menu-button {
+  display: none;
+}
+
+.navbar-links > * {
   margin-right: 20px;
 }
 
-.navbar-user {
-  margin-right: 10px;
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .full-logo {
+    display: none;
+  }
+
+  .collapsed-logo {
+    display: block;
+  }
 }
 
-.navbar-user button {
-  display: flex;
-  align-items: center;
+/* Drawer Styles */
+.ant-drawer-header {
+  background-color: #f0f2f5;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.ant-drawer-body {
+  padding: 0 24px;
+}
+
+.ant-btn-block {
+  text-align: left;
+  padding-left: 24px;
 }

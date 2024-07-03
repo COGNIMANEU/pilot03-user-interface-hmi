@@ -30,7 +30,7 @@ const BreadcrumbNav = () => {
   ];
 
   return (
-    <Breadcrumb items={breadcrumbItems} style={{ margin: '16px 0' }} />
+    <Breadcrumb items={breadcrumbItems}/>
   );
 };
 

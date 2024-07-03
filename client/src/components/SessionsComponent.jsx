@@ -42,23 +42,27 @@ const SessionsComponent = () => {
       key: 'name',
       render: (text, record) => <a onClick={() => navigate(`/sessions/${record._id}`)}>{text}</a>,
       sorter: (a, b) => a.name.localeCompare(b.name),
+      responsive: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     {
       title: 'Description',
       dataIndex: 'description',
       key: 'description',
+      responsive: ['lg', 'xl'],
     },
     {
       title: 'Workstation',
       dataIndex: 'workstation_id',
       key: 'workstation_id',
       sorter: (a, b) => a.workstation_id.localeCompare(b.workstation_id),
+      responsive: ['lg', 'xl'],
     },
     {
       title: 'Client',
       dataIndex: 'client_id',
       key: 'client_id',
       sorter: (a, b) => a.client_id.localeCompare(b.client_id),
+      responsive: ['lg', 'xl'],
     },
     {
       title: 'Status',
@@ -66,12 +70,14 @@ const SessionsComponent = () => {
       key: 'status',
       render: (status) => getStatusTag(status),
       sorter: (a, b) => a.status - b.status,
+      responsive: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     {
       title: 'Stage',
       key: 'stage',
       sorter: (a, b) => getCurrentSessionStage(a) - getCurrentSessionStage(b),
       render: (text, record) => getStageTag(getCurrentSessionStage(record).stage),
+      responsive: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     {
       title: 'Created At',
@@ -79,6 +85,7 @@ const SessionsComponent = () => {
       key: 'created_at',
       render: (created_at) => dayjs(created_at).fromNow(),
       sorter: (a, b) => new Date(a.created_at) - new Date(b.created_at),
+      responsive: ['lg', 'xl'],
     },
     {
       title: 'Last Updated',
@@ -86,6 +93,7 @@ const SessionsComponent = () => {
       key: 'last_updated',
       render: (last_updated) => dayjs(last_updated).fromNow(),
       sorter: (a, b) => new Date(a.last_updated) - new Date(b.last_updated),
+      responsive: ['lg', 'xl'],
     },
   ];
 
