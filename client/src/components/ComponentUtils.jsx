@@ -1,11 +1,15 @@
 import { Tag , Menu} from 'antd';
-import { STAGE_NAMES, STAGE_COLORS, STAGE_ICONS, STATUS_NAMES, STATUS_COLORS, STAGE_SERVICE_URLS } from './constants';
+import { STAGE_NAMES, STAGE_COLORS, STAGE_ICONS, STATUS_NAMES, STATUS_COLORS, STAGE_SERVICE_URLS, ALERT_TYPE_COLORS, ALERT_TYPE_NAMES } from './constants';
 import { ProductOutlined, PrinterOutlined, DeleteColumnOutlined, StarOutlined } from '@ant-design/icons';
 
 export const getStatusTag = (status) => (<Tag color={STATUS_COLORS[status]}>{STATUS_NAMES[status]}</Tag>);
 
 export const getStageTag = (stage) => (
   <Tag color={STAGE_COLORS[stage]}>{STAGE_NAMES[stage]}</Tag>
+);
+
+export const getAlertTag = (alert_type) => (
+  <Tag color={ALERT_TYPE_COLORS[alert_type]}>{ALERT_TYPE_NAMES[alert_type]}</Tag>
 );
 
 export const getStageName = (stage) => STAGE_NAMES[stage];

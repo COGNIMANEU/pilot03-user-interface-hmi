@@ -14,6 +14,7 @@ import NewSessionForm from './components/NewSessionForm.jsx';
 import SessionDetailPage from './components/SessionDetailPage.jsx';
 import EditSessionPage from './components/EditSessionPage.jsx';
 import MainLayout from './components/MainLayout.jsx';
+import SessionStageDetail from './components/SessionStageDetail.jsx';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -78,6 +79,7 @@ const App = () => {
             }
           />
           <Route path="/edit-session/:id" element={<PrivateRoute><EditSessionPage /></PrivateRoute>} />
+          <Route path="/sessions/:sessionId/stages/:stage" element={<PrivateRoute><SessionStageDetail /></PrivateRoute>} />
           <Route
             path="/alerts"
             element={

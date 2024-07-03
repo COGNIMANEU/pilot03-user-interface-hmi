@@ -76,7 +76,10 @@ const SessionsComponent = () => {
       title: 'Stage',
       key: 'stage',
       sorter: (a, b) => getCurrentSessionStage(a) - getCurrentSessionStage(b),
-      render: (text, record) => getStageTag(getCurrentSessionStage(record).stage),
+      render: (text, record) => {
+        const currentStage = getCurrentSessionStage(record);
+        return <Button type="text" onClick={() => navigate(`/sessions/${record._id}/stages/${currentStage.stage}`)}>{getStageTag(currentStage.stage)}</Button>
+      },
       responsive: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     {
@@ -100,7 +103,7 @@ const SessionsComponent = () => {
   return (
     <div className="session-overview-container">
       <div className="session-overview-header">
-        <h2>Session Overview</h2>
+        <h2>Dashboard</h2>
         {user && (user.role === 0 || user.role === 1) && (
           <Button type="primary" onClick={() => navigate('/create-session')}>
             Create new session
@@ -109,7 +112,7 @@ const SessionsComponent = () => {
       </div>
       <div className="session-overview-search">
         <Input
-          placeholder="Search by name or description"
+          placeholder="Search by name, description, workstation or client"
           value={searchText}
           onChange={handleSearch}
         />

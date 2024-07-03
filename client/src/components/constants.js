@@ -39,3 +39,15 @@ export const STAGE_ICONS = {
   2: 'DeleteColumnOutlined',
   3: 'StarOutlined'
 };
+
+export const ALERT_TYPE_COLORS = [
+  'blue', // information
+  'orange', // warning
+  'red'// critical
+];
+
+export const ALERT_TYPE_NAMES = [
+  'Info',
+  'Warning',
+  'Critical',
+]
