@@ -6,11 +6,10 @@
   padding: 0 20px;
   background-color: white;
   color: black;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-logo img {
-  height: 40px;
+  height: 60px;
 }
 
 .full-logo {

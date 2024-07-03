@@ -144,9 +144,9 @@ const SessionDetailPage = () => {
           <Descriptions.Item label="Created by">{session.created_by}</Descriptions.Item>
           <Descriptions.Item label="Operator">{session.operator}</Descriptions.Item>
         </Descriptions>
-        <div>
+        <div style={{marginTop: '10px'}}>
           <Button
-            type="secondary"
+            type="dashed"
             onClick={() => navigate(`/edit-session/${session._id}`)}
             icon={<EditOutlined />}
             style={{ marginRight: '10px' }}
