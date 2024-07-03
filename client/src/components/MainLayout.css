@@ -1,15 +1,13 @@
 /* MainLayout Styles */
 .main-content {
-  padding: 20px 50px;
-  margin-top: 64px;
+  padding: 0px 40px;
   background: #fff;
   min-height: calc(100vh - 64px - 70px); /* Adjust for header and footer height */
 }
 
 @media (max-width: 768px) {
   .main-content {
-    padding: 0 20px;
-    margin-top: 56px; /* Adjust for smaller header height */
+    padding: 0px 0px;
     width: 100%; /* Full width in collapsed mode */
   }
 }

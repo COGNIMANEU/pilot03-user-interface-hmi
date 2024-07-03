@@ -10,7 +10,7 @@ const MainLayout = ({  children, isAuthenticated }) => {
   return (
     <Layout>
       {isAuthenticated && <Navbar />}
-      <Content>
+      <Content className="main-content">
         {children}
       </Content>
       <CustomFooter />

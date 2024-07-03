@@ -2,7 +2,7 @@ import SessionsComponent from './SessionsComponent'
 
 const DashboardPage = () => {
   return (
-    <div style={{ padding: '20px' }}>
+    <div>
       <SessionsComponent />
     </div>
   );
