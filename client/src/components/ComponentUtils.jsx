@@ -5,7 +5,7 @@ import { ProductOutlined, PrinterOutlined, DeleteColumnOutlined, StarOutlined } 
 export const getStatusTag = (status) => (<Tag color={STATUS_COLORS[status]}>{STATUS_NAMES[status]}</Tag>);
 
 export const getStageTag = (stage) => (
-  <Tag color={STAGE_COLORS[stage]}>{STAGE_NAMES[stage]}</Tag>
+  <Tag>{STAGE_NAMES[stage]}</Tag>
 );
 
 export const getAlertTag = (alert_type) => (
@@ -44,12 +44,14 @@ export const getCurrentSessionStage = (session) => {
 }
 
 const iconComponents = {
-  PrinterOutlined: <PrinterOutlined style={{ fontSize: '24px' }} />,
-  ProductOutlined: <ProductOutlined style={{ fontSize: '24px' }} />,
-  DeleteColumnOutlined: <DeleteColumnOutlined style={{ fontSize: '24px' }} />,
-  StarOutlined: <StarOutlined style={{ fontSize: '24px' }} />
+  PrinterOutlined: <PrinterOutlined style={{ fontSize: '36px' }} />,
+  ProductOutlined: <ProductOutlined style={{ fontSize: '36px' }} />,
+  DeleteColumnOutlined: <DeleteColumnOutlined style={{ fontSize: '36px' }} />,
+  StarOutlined: <StarOutlined style={{ fontSize: '36px' }} />
 };
 export const getStageIcon = (stage) => iconComponents[STAGE_ICONS[stage]];
+
+export const getStageColor = (stage) => STAGE_COLORS[stage];
 
 export const getStageServiceURL = (stage) => STAGE_SERVICE_URLS[stage];
 

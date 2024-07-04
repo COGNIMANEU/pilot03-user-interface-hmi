@@ -28,9 +28,9 @@ export const STAGE_NAMES = [
 
 export const STAGE_COLORS = [
   'blue',      // 3D printing
-  'cyan',      // Parts removal
-  'yellow',    // Support removal
-  'gold'       // Surface polishing
+  'orange',      // Parts removal
+  'red',    // Support removal
+  'green'       // Surface polishing
 ];
 
 export const STAGE_ICONS = {
@@ -41,9 +41,9 @@ export const STAGE_ICONS = {
 };
 
 export const ALERT_TYPE_COLORS = [
-  'blue', // information
-  'orange', // warning
-  'red'// critical
+  'darkblue', // information
+  'darkorange', // warning
+  'darkred'// critical
 ];
 
 export const ALERT_TYPE_NAMES = [

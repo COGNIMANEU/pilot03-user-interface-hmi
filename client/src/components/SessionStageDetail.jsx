@@ -22,6 +22,7 @@ const { Title } = Typography;
 const SessionStageDetail = () => {
   const dispatch = useDispatch();
   const { sessionId, stage } = useParams();
+  console.log(sessionId, stage);
   const sessions = useSelector((state) => state.sessions.sessions);
   const alerts = useSelector((state) => state.alerts.alerts);
 

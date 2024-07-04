@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Button, Table, Input } from 'antd';
 import { fetchSessionsRequest } from '../redux/actions/sessionActions';
-import { getStatusTag, getStageTag, getCurrentSessionStage } from './ComponentUtils';
+import { getStatusTag, getCurrentSessionStage, getStageName } from './ComponentUtils';
 import dayjs from 'dayjs';
 import './SessionsComponent.css';
 
@@ -78,7 +78,7 @@ const SessionsComponent = () => {
       sorter: (a, b) => getCurrentSessionStage(a) - getCurrentSessionStage(b),
       render: (text, record) => {
         const currentStage = getCurrentSessionStage(record);
-        return <Button type="text" onClick={() => navigate(`/sessions/${record._id}/stages/${currentStage.stage}`)}>{getStageTag(currentStage.stage)}</Button>
+        return <Button type="text" onClick={() => navigate(`/sessions/${record._id}/stages/${currentStage.stage}`)}>{getStageName(currentStage.stage)}</Button>
       },
       responsive: ['xs', 'sm', 'md', 'lg', 'xl'],
     },

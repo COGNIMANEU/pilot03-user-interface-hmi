@@ -6,6 +6,11 @@
   padding: 0 20px;
   background-color: white;
   color: black;
+  position: fixed; /* Fixed positioning */
+  top: 0; /* Stick to the top */
+  width: 100%; /* Full width */
+  margin: auto;
+  z-index: 1000; /* Ensure it's on top of other elements */
 }
 
 .navbar-logo img {
@@ -49,6 +54,9 @@
 
   .collapsed-logo {
     display: block;
+  }
+  .navbar{
+    width: 97%;
   }
 }
 

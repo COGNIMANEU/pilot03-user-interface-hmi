@@ -71,14 +71,14 @@ const App = () => {
               }
             />
             <Route
-            path="/sessions/:id"
+            path="/sessions/:sessionId"
             element={
               <PrivateRoute>
                 <SessionDetailPage />
               </PrivateRoute>
             }
           />
-          <Route path="/edit-session/:id" element={<PrivateRoute><EditSessionPage /></PrivateRoute>} />
+          <Route path="/edit-session/:sessionId" element={<PrivateRoute><EditSessionPage /></PrivateRoute>} />
           <Route path="/sessions/:sessionId/stages/:stage" element={<PrivateRoute><SessionStageDetail /></PrivateRoute>} />
           <Route
             path="/alerts"
