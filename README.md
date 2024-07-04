@@ -1,6 +1,5 @@
 # pilot03-user-interface-hmi
 Human Machine Interface for Pilot 03 (CROOM) - outputs live data of the process, integrated with warning signals and alerts highlighting the issue. 
-Certainly! Here's a comprehensive `README.md` file for your project.
 
 The system uses Node.js with Express for the backend, MongoDB for the database, and React with Ant Design for the frontend.
 
@@ -82,15 +81,7 @@ The system uses Node.js with Express for the backend, MongoDB for the database, 
 4. Use the session detail page to track and update stages.
 
 ## API Endpoints
-
-### Sessions
-
-- `GET /api/sessions` - Get all sessions with pagination.
-- `GET /api/sessions/:id` - Get a session by ID.
-- `PUT /api/sessions/:id` - Update a session.
-- `POST /api/sessions/:id/update-stage-status` - Update the status of a stage in a session.
-- `POST /api/sessions/:id/advance` - Advance the session to the next stage.
-
+![HMI Schema](./schema.png)
 ## License
 
 This project is licensed under the GNU GENERAL PUBLIC LICENSE Version 3.0
