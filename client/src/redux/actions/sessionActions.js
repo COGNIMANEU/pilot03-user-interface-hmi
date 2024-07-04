@@ -73,9 +73,9 @@ export const updateSessionFailure = (error) => ({
   payload: error,
 });
 
-export const createSessionRequest = (id, values) => ({
+export const createSessionRequest = (values) => ({
   type: CREATE_SESSION_REQUEST,
-  payload: { id, values },
+  payload: values,
 });
 
 export const createSessionSuccess = (session) => ({

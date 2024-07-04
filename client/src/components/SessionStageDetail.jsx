@@ -13,6 +13,7 @@ import {
   Row,
   Col,
 } from "antd";
+import {ApiOutlined} from '@ant-design/icons';
 import { updateAlertStatusRequest } from "../redux/actions/alertActions";
 import { getAlertTag, getStageName, getStatusTag } from "./ComponentUtils";
 import dayjs from "dayjs";
@@ -83,7 +84,7 @@ const SessionStageDetail = () => {
             size="large"
             onClick={() => window.open('https://external-service.com', '_blank')}
           >
-            Open stage service
+            <ApiOutlined /> Open {getStageName(stage)} service
           </Button>
         </Col>
       </Row>

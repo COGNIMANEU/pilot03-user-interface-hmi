@@ -19,6 +19,9 @@ import {
   UPDATE_STAGE_STATUS_REQUEST,
   UPDATE_STAGE_STATUS_SUCCESS,
   UPDATE_STAGE_STATUS_FAILURE,
+  CREATE_SESSION_REQUEST,
+  CREATE_SESSION_SUCCESS,
+  CREATE_SESSION_FAILURE,
 } from '../actions/sessionActions';
 import { notification } from 'antd';
 function* fetchSessions(action) {
@@ -36,6 +39,23 @@ function* fetchSessionById(action) {
     yield put({ type: FETCH_SESSION_BY_ID_SUCCESS, payload: response.data });
   } catch (error) {
     yield put({ type: FETCH_SESSION_BY_ID_FAILURE, payload: error.message });
+  }
+}
+
+function* createSession(action) {
+  try {
+    const response = yield call(axios.post, `/api/sessions`, action.payload);
+    yield put({ type: CREATE_SESSION_SUCCESS, payload: response.data });
+    notification.success({
+      message: 'Create Successful',
+      description: 'A new session has been created successfully.',
+    });
+  } catch (error) {
+    yield put({ type: CREATE_SESSION_FAILURE, payload: error.message });
+    notification.error({
+      message: 'Create Failed',
+      description: 'Failed to create a new session. Please try again.',
+    });
   }
 }
 
@@ -100,6 +120,7 @@ function* updateStageStatus(action) {
 function* sessionSaga() {
   yield takeLatest(FETCH_SESSIONS_REQUEST, fetchSessions);
   yield takeLatest(FETCH_SESSION_BY_ID_REQUEST, fetchSessionById);
+  yield takeLatest(CREATE_SESSION_REQUEST,createSession);
   yield takeLatest(UPDATE_SESSION_REQUEST, updateSession);
   yield takeLatest(DELETE_SESSION_REQUEST, deleteSession);
   yield takeLatest(ADVANCE_STAGE_REQUEST, advanceStage);

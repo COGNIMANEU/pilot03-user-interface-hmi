@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Form,
@@ -17,16 +17,16 @@ import {
 import StagesSection from "./StagesSession";
 
 const EditSessionPage = () => {
-  const { id } = useParams();
+  const { sessionId } = useParams();
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const session = useSelector((state) => state.sessions.currentSession);
   const loading = useSelector((state) => state.sessions.loading);
   const [initialValues, setInitialValues] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
-    dispatch(fetchSessionByIdRequest(id));
-  }, [dispatch, id]);
+    dispatch(fetchSessionByIdRequest(sessionId));
+  }, [dispatch, sessionId]);
 
   useEffect(() => {
     if (session) {
@@ -57,11 +57,12 @@ const EditSessionPage = () => {
       ...values,
     };
 
-    dispatch(updateSessionRequest(id, updatedSession))
+    dispatch(updateSessionRequest(sessionId, updatedSession));
+    navigate('/');
   };
 
   const handleUpdateStageStatus = (stageIndex, newStatus) => {
-    dispatch(updateStageStatusRequest(id, stageIndex, newStatus));
+    dispatch(updateStageStatusRequest(sessionId, stageIndex, newStatus));
   };
 
   if (loading || !initialValues) {
