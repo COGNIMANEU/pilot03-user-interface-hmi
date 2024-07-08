@@ -7,10 +7,10 @@ const alertSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   type: { type: Number, required: true }, // 0 - information, 1 - warning, 2 - critical
-  status: { type: Number, required: true }, // 0 - unresolved, 1 - resolved, 2 - ignored
+  status: { type: Number, required: true, default: 0 }, // 0 - unresolved, 1 - resolved, 2 - ignored
   action: { type: Array, default: [] },
   created_at: { type: Date, default: Date.now },
-  resolved_at: { type: Date }
+  resolved_at: { type: Date, default: null }
 });
 
 const Alert = mongoose.model('Alert', alertSchema);

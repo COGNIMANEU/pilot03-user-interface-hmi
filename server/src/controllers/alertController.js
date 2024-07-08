@@ -64,4 +64,23 @@ const getUnresolvedAlertCount = async (req, res) => {
   }
 };
 
-module.exports = { getAlerts, updateAlertStatus, getUnresolvedAlertCount };
+
+const addNewAlert = async (req, res) => {
+  try {
+    const { session_id, stage, title, description, type } = req.body;
+    logger.debug( session_id, stage, title, description, type);
+    // Validate input
+    if (!session_id || stage === undefined || !title || !description || type === undefined) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    // Create new alert
+    const newAlert = new Alert({ session_id, stage, title, description, type,  });
+    await newAlert.save();
+    res.status(201).json(newAlert);
+  } catch (error) {
+    logger.error(error.message);
+    res.status(500).json({ message: 'Server error', error });
+  }
+}
+module.exports = { getAlerts,addNewAlert, updateAlertStatus, getUnresolvedAlertCount };
