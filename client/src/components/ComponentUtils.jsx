@@ -14,34 +14,7 @@ export const getAlertTag = (alert_type) => (
 
 export const getStageName = (stage) => STAGE_NAMES[stage];
 
-export const getCurrentSessionStage = (session) => {
-  if (session.status === 0) {
-    return session.stages[0];
-  }
-
-  if (session.status === 3) {
-    for (let i = session.stages.length - 1; i >= 0; i--) {
-      if (session.stages[i].status === 3) {
-        return session.stages[i];
-      }
-    }
-  }
-
-  if (session.status === 2) {
-    return session.stages[session.stages.length - 1];
-  }
-
-  for (let i = 0; i < session.stages.length; i++) {
-    if (
-      session.stages[i].status !== 2 &&
-      (i === session.stages.length - 1 || session.stages[i + 1].status === 0)
-    ) {
-      return session.stages[i];
-    }
-  }
-
-  return null; // In case there is no matching stage
-}
+export const getCurrentSessionStage = (session) => session.stages[session.currentStageIndex];
 
 const iconComponents = {
   PrinterOutlined: <PrinterOutlined style={{ fontSize: '36px' }} />,
