@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getSessions, getSessionById, createSession, updateSession, deleteSession, updateStageStatus, advanceStage } = require('../controllers/sessionController');
+const { getSessions, getSessionById, createSession, updateSession, deleteSession, modifyStageStatus } = require('../controllers/sessionController');
 
 // Get all sessions
 router.get('/', getSessions);
@@ -17,7 +17,6 @@ router.put('/:id', updateSession);
 // Delete a session
 router.delete('/:id', deleteSession);
 
-router.post('/:id/update-stage-status', updateStageStatus);
-router.post('/:id/advance', advanceStage);
+router.post('/:id/modify-stage-status', modifyStageStatus);
 
 module.exports = router;

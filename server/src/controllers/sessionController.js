@@ -84,26 +84,25 @@ const deleteSession = async (req, res) => {
   }
 };
 
-const updateStageStatus = async (req, res) => {
+const modifyStageStatus = async (req, res) => {
   try {
     const { stageIndex, newStatus } = req.body;
+     // Validate input
+     if (stageIndex === undefined || newStatus === undefined) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
     const session = await Session.findById(req.params.id);
-    if (!session) throw new Error('Session not found');
-    session.updateStageStatus(stageIndex, newStatus);
-    await session.save();
-    res.status(200).send('Stage status updated successfully');
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
-};
+    if (!session) {
+      return res.status(404).json({ message: 'Session not found' });
+    }
 
-const advanceStage = async (req, res) => {
-  try {
-    const session = await Session.findById(req.params.id);
-    if (!session) throw new Error('Session not found');
-    session.advanceStage();
-    await session.save();
-    res.status(200).send('Advanced to next stage successfully');
+    // Modify the stage status with validation
+    try {
+      await session.modifyStageStatus(stageIndex, newStatus);
+      res.status(200).json(session);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -115,6 +114,5 @@ module.exports = {
   createSession,
   updateSession,
   deleteSession,
-  updateStageStatus,
-  advanceStage
+  modifyStageStatus
 };

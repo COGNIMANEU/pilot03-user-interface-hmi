@@ -5,6 +5,7 @@ const cors = require('cors');
 const alertRoutes = require('./routes/alertRoutes');
 const sessionRoutes = require('./routes/sessionRoutes');
 const userRoutes = require('./routes/userRoutes')
+const statusRoutes = require('./routes/statusRoutes')
 const {authenticateToken} = require('./middlewares/authMiddleware')
 require('dotenv').config();
 const logger = require('./utils/logger');
@@ -40,5 +41,6 @@ app.use((req, res, next) => {
 
 app.use('/api/alerts', authenticateToken, alertRoutes);
 app.use('/api/sessions', authenticateToken, sessionRoutes);
+app.use('/api/status', authenticateToken, statusRoutes);
 app.use('/api/users', userRoutes)
 module.exports = app;

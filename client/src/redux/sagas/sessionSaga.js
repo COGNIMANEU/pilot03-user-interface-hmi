@@ -98,21 +98,21 @@ function* advanceStage(action) {
 
 function* updateStageStatus(action) {
   try {
-    const response = yield call(axios.post, `/api/sessions/${action.payload.id}/update-stage-status`, {
+    const response = yield call(axios.post, `/api/sessions/${action.payload.id}/modify-stage-status`, {
       stageIndex: action.payload.stageIndex,
       newStatus: action.payload.newStatus,
     });
     yield put({ type: UPDATE_STAGE_STATUS_SUCCESS, payload: response.data });
     notification.success({
-      message: 'Stage Status Updated',
-      description: 'The stage status has been updated successfully.',
+      message: 'Stage Status Modified',
+      description: 'The stage status has been modified successfully.',
     });
     yield put({ type: FETCH_SESSION_BY_ID_REQUEST, payload: action.payload.id });
   } catch (error) {
     yield put({ type: UPDATE_STAGE_STATUS_FAILURE, payload: error.message });
     notification.error({
-      message: 'Update Failed',
-      description: 'Failed to update the stage status. Please try again.',
+      message: 'Modified Failed',
+      description: 'Failed to modify the stage status. Please try again.',
     });
   }
 }
