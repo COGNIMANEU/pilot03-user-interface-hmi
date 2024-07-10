@@ -98,17 +98,19 @@ SessionSchema.methods.modifyStageStatus = function(stageIndex, newStatus) {
 
 SessionSchema.methods.updateGlobalStatus = function() {
   const currentStage = this.stages[this.currentStageIndex];
+  this.status = 1;
 
   if (currentStage.status === 3) {
     this.status = 3;
-  } else if (currentStage.status === 2 && this.currentStageIndex === this.stages.length - 1) {
-    this.status = 2;
+  } else if (currentStage.status === 2) {
+    if (this.currentStageIndex === this.stages.length - 1) {
+      this.status = 2;
+    }else {
+      this.currentStageIndex += 1; // jump stage
+    }
   } else if (currentStage.status === 0 && this.currentStageIndex === 0) {
     this.status = 0;
-  } else {
-    this.status = 1;
   }
-
   return this.save();
 };
 
