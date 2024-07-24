@@ -1,0 +1,440 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Documentation",
+    "version": "1.0.0",
+    "description": "API Documentation for the HMI server"
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "CROOM HMI server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Session": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the session"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the session"
+          },
+          "workstation_id": {
+            "type": "string",
+            "description": "ID of the workstation"
+          },
+          "client_id": {
+            "type": "string",
+            "description": "ID of the client"
+          },
+          "stage": {
+            "type": "integer",
+            "description": "Current stage of the session"
+          },
+          "status": {
+            "type": "integer",
+            "description": "Status of the session"
+          },
+          "created_by": {
+            "type": "string",
+            "description": "User who created the session"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/sessions": {
+      "get": {
+        "summary": "Get all sessions",
+        "tags": ["Session"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of sessions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Session"
+                      }
+                    },
+                    "totalPages": {
+                      "type": "integer"
+                    },
+                    "currentPage": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new session",
+        "tags": ["Session"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the session"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description of the session"
+                  },
+                  "workstation_id": {
+                    "type": "string",
+                    "description": "ID of the workstation"
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "description": "ID of the client"
+                  },
+                  "stage": {
+                    "type": "integer",
+                    "description": "Current stage of the session"
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status of the session"
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "User who created the session"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Session created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/sessions/{id}": {
+      "get": {
+        "summary": "Get a session by ID",
+        "tags": ["Session"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the session",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a session",
+        "tags": ["Session"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the session",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the session"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description of the session"
+                  },
+                  "workstation_id": {
+                    "type": "string",
+                    "description": "ID of the workstation"
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "description": "ID of the client"
+                  },
+                  "stage": {
+                    "type": "integer",
+                    "description": "Current stage of the session"
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status of the session"
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "description": "User who created the session"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Session updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a session",
+        "tags": ["Session"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the session",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session deleted successfully"
+          },
+          "404": {
+            "description": "Session not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/sessions/{id}/modify-stage-status": {
+      "post": {
+        "summary": "Modify stage status with validation",
+        "tags": ["Session"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the session",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "stageIndex": {
+                    "type": "integer",
+                    "description": "The stage index"
+                  },
+                  "newStatus": {
+                    "type": "integer",
+                    "description": "The new status of the stage"
+                  }
+                },
+                "required": ["stageIndex", "newStatus"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The session with the modified stage status",
+            "content": {
+              "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Session"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Invalid request data",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Session not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal server error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+    }
+  }
+}

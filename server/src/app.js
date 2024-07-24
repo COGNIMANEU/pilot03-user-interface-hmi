@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
+const swaggerUi = require('swagger-ui-express');
 const alertRoutes = require('./routes/alertRoutes');
 const sessionRoutes = require('./routes/sessionRoutes');
 const userRoutes = require('./routes/userRoutes')
@@ -38,9 +41,22 @@ app.use((req, res, next) => {
   next();
 });
 
-
+// Swagger API Docs
+// Load Swagger JSON file
+const swaggerDocument = JSON.parse(fs.readFileSync(path.join(__dirname, './swagger-api-docs.json'), 'utf8'));
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/alerts', authenticateToken, alertRoutes);
 app.use('/api/sessions', authenticateToken, sessionRoutes);
 app.use('/api/status', authenticateToken, statusRoutes);
 app.use('/api/users', userRoutes)
+
+// Serve the static files from the React app
+const buildPath = path.join(__dirname, '../../client', 'dist'); // Adjust path according to your setup
+app.use(express.static(buildPath));
+
+// Catch-all route to serve index.html for React Router
+app.get('*', (req, res) => {
+  res.sendFile(path.join(buildPath, 'index.html'));
+});
+
 module.exports = app;

@@ -17,6 +17,7 @@ router.put('/:id', updateSession);
 // Delete a session
 router.delete('/:id', deleteSession);
 
+// Update stage status
 router.post('/:id/modify-stage-status', modifyStageStatus);
 
 module.exports = router;
